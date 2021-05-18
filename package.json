@@ -4,6 +4,7 @@
   "description": "Projeto utilizado no teste de front do mercado livre",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src"
   },
@@ -21,6 +22,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "eslint": "^7.26.0"
+    "eslint": "^7.26.0",
+    "nodemon": "^2.0.7"
   }
 }
