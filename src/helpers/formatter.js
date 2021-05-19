@@ -8,8 +8,8 @@ const itemFormatter = (product) => {
       title: product.title,
       price: {
         currency: product.currency_id,
-        amount: Number(amount),
-        decimals: Number(decimals),
+        amount: Number(amount) || 0,
+        decimals: Number(decimals) || 0,
       },
       picture: product.pictures[0].url,
       condition: product.condition,

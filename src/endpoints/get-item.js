@@ -11,11 +11,13 @@ const getItem = async (req, res) => {
     const { data: { plain_text } } = await axios.get(`${BASE_URL}/items/${req.params.id}/description`);
 
     const newProduct = itemFormatter(product);
-    res.send({ 
-      item: {
-        ...newProduct,
-        description: plain_text,
-      }
+
+    res.status(200)
+      .send({
+        item: {
+          ...newProduct,
+          description: plain_text,
+        }
     });
   } catch (error) {
     res.send({ error });
