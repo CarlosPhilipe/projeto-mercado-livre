@@ -30,7 +30,7 @@ const listItems =  async (req, res) => {
       })
       .reduce((list, sub) => list.concat(sub), []); // turns the arrays into a single array too
 
-    res.send({
+    res.status(200).send({
       author: req.author,
       categories: filters,
       items,
