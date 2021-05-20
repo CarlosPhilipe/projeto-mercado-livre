@@ -4,6 +4,7 @@
   "description": "Projeto utilizado no teste de front do mercado livre",
   "main": "index.js",
   "scripts": {
+    "start": "node src",
     "dev": "nodemon src",
     "test": "jest src",
     "lint": "eslint src"
