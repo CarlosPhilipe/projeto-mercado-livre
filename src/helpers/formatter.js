@@ -11,7 +11,7 @@ const itemFormatter = (product) => {
         amount: Number(amount) || 0,
         decimals: Number(decimals) || 0,
       },
-      picture: product.pictures[0].url,
+      picture: product.pictures ? product.pictures[0].url : product.thumbnail,
       condition: product.condition,
       free_shipping: product.shipping.free_shipping,
       sold_quantity: product.sold_quantity,

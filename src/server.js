@@ -8,7 +8,7 @@ const server = express();
 
 server.use(express.json());
 
-server.get('/items', listItems);
+server.get('/items', authorMiddleware, listItems);
 server.get('/items/:id', authorMiddleware, getItem);
 
 module.exports = server;
