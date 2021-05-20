@@ -36,6 +36,16 @@ describe('Test route /items/:id', () => {
         expect(price.amount).not.toBeNull();
         expect(price.decimals).not.toBeNull();
       });
+
+      test('Então: a requisição possui o atributo item', async () => {
+        expect(response.body).toHaveProperty('author');
+      });
+
+      test('Então: O atributo author possui name igual Carlos e lastName igual Bahia', async () => {
+        const { author } = response.body;
+        expect(author.name).toBe('Carlos');
+        expect(author.lastname).toBe('Bahia');
+      });
     });
 
     describe('QUANDO: o id é um id inválido', () => {

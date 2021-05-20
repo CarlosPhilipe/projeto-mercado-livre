@@ -17,6 +17,7 @@ const getItem = async (req, res) => {
 
       res.status(200)
         .send({
+          author: req.author,
           item: {
             ...product,
             description: plain_text,
