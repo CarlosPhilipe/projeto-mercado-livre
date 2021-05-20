@@ -2,7 +2,7 @@ const axios = require('axios');
 const supertest = require('supertest');
 const server = require('../server');
 
-const getItemMock = require('../__mocks__/get-item-mock.json');
+const { validIdMock, invalidIdMock } = require('../__mocks__/get-item-mock');
 
 jest.mock('axios');
 
@@ -10,10 +10,10 @@ describe('Test route /items/:id', () => {
   const productId = 'MLB1642157248';
   let response = null;
 
-  axios.get.mockResolvedValue(getItemMock);
   describe('DADO: Uma requisição a rota  /items/:id', () => {
     describe('QUANDO:  o id é um id válido', () => {
       beforeEach(async () => {
+        axios.get.mockResolvedValue(validIdMock);
         response = await supertest(server).get(`/items/${productId}`);
       });
 
@@ -35,6 +35,26 @@ describe('Test route /items/:id', () => {
         expect(price.currency).not.toBeNull();
         expect(price.amount).not.toBeNull();
         expect(price.decimals).not.toBeNull();
+      });
+    });
+
+    describe('QUANDO: o id é um id inválido', () => {
+      beforeEach(async () => {
+        axios.get.mockResolvedValue(invalidIdMock);
+        response = await supertest(server).get(`/items/${productId}`);
+      });
+
+      test('Então: possui status code 404', async () => {
+        expect(response.status).toBe(404);
+      });
+
+      test('Então: a reposta da requisição possui o atributo error', async () => {
+        expect(response.body).toHaveProperty('error');
+      });
+
+      test('Então: O erro retornado é igual "resource not found"', async () => {
+        const { error } = response.body;
+        expect(error).toBe("resource not found");
       });
     });
   });
