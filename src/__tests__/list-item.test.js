@@ -6,15 +6,15 @@ const { validResponseMock } = require('../__mocks__/list-item-mock');
 
 jest.mock('axios');
 
-describe('Test route items?q=iphone', () => {
+describe('Test route api/items?q=iphone', () => {
   const searchString = 'iphone';
   let response = null;
 
-  describe(`DADO: Uma requisição a rota /items?q=${searchString}`, () => {
+  describe(`DADO: Uma requisição a rota /api/items?q=${searchString}`, () => {
     describe('QUANDO: quando a barra tem uma busca válida', () => {
       beforeEach(async () => {
         axios.get.mockResolvedValue(validResponseMock);
-        response = await supertest(server).get(`/items?q=${searchString}`);
+        response = await supertest(server).get(`/api/items?q=${searchString}`);
       });
 
       test('Então: possui status code 200', async () => {

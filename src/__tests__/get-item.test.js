@@ -6,15 +6,15 @@ const { validIdMock, invalidIdMock } = require('../__mocks__/get-item-mock');
 
 jest.mock('axios');
 
-describe('Test route /items/:id', () => {
+describe('Test route /api/items/:id', () => {
   const productId = 'MLB1642157248';
   let response = null;
 
-  describe('DADO: Uma requisição a rota  /items/:id', () => {
+  describe('DADO: Uma requisição a rota  /api/items/:id', () => {
     describe('QUANDO:  o id é um id válido', () => {
       beforeEach(async () => {
         axios.get.mockResolvedValue(validIdMock);
-        response = await supertest(server).get(`/items/${productId}`);
+        response = await supertest(server).get(`/api/items/${productId}`);
       });
 
       test('Então: possui status code 200', async () => {
@@ -51,7 +51,7 @@ describe('Test route /items/:id', () => {
     describe('QUANDO: o id é um id inválido', () => {
       beforeEach(async () => {
         axios.get.mockResolvedValue(invalidIdMock);
-        response = await supertest(server).get(`/items/${productId}`);
+        response = await supertest(server).get(`/api/items/${productId}`);
       });
 
       test('Então: possui status code 404', async () => {
